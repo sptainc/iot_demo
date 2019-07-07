@@ -92,19 +92,46 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     $("#lightEnable4").bootstrapToggle("on");
                 }
 
-                $("#lightEnable").change(function (){
+                $("#lightEnable1").change(function (){
                     if ( $(this).prop('checked') ) {
-                        saveLight(1);
+                        saveLight(1, 1);
                     } else { 
-                        saveLight(0);
+                        saveLight(1, 0);
+                    }
+                });
+
+
+                $("#lightEnable2").change(function (){
+                    if ( $(this).prop('checked') ) {
+                        saveLight(2, 1);
+                    } else { 
+                        saveLight(2, 0);
+                    }
+                });
+
+
+                $("#lightEnable3").change(function (){
+                    if ( $(this).prop('checked') ) {
+                        saveLight(3, 1);
+                    } else { 
+                        saveLight(3, 0);
+                    }
+                });
+
+
+                $("#lightEnable4").change(function (){
+                    if ( $(this).prop('checked') ) {
+                        saveLight(4, 1);
+                    } else { 
+                        saveLight(4, 0);
                     }
                 });
             });
         }
 
-        function saveLight( enabled ) {
+        function saveLight( lightNum ,enabled ) {
             $.ajax({
-                url: "/savelight.php?e=" + enabled,
+                url: "/savelight.php?e" + lightNum + "=" + enabled,
             }).done(function(data) {
                 alert("Updated");
             });
