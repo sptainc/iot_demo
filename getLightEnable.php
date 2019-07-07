@@ -9,17 +9,24 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
     $sqlGetLight = "SELECT light_enable FROM controls";
     
     if($stmt = mysqli_prepare($link, $sqlGetLight)) {
-        // Attempt to execute the prepared statement
         if(mysqli_stmt_execute($stmt)){
             // Store result
             mysqli_stmt_store_result($stmt);
             // Check if username exists, if yes then verify password
-            if(mysqli_stmt_num_rows($stmt) == 1){                    
+            mysqli_stmt_bind_result($stmt, $isEnable);
+            if(mysqli_stmt_num_rows($stmt) >= 1){ 
                 // Bind result variables
-                mysqli_stmt_bind_result($stmt, $isEnable);
-                mysqli_stmt_fetch($stmt);
+                $counter = 0;
+                while(mysqli_stmt_fetch($stmt)) {
+                    if ( $counter == 0 ) 
+                        $result .= $isEnable;
+                    else
+                        $result .= "," . $isEnable;
+                    $counter++;
+                }
             }
         } else{
+            $result = "Oops! Something went wrong. Please try again later.";
         }
     }
      
@@ -29,6 +36,6 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
     // Close connection
     mysqli_close($link);
 
-    die("enabled:". $isEnable);
+    die("enabled:". $result);
 }
 ?>

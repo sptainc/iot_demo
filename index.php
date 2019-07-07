@@ -32,7 +32,10 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             <h2 class="m-b-10">Dashboard</h2>
         </div>
         <div class="col-xs-2">
-            <input type="checkbox" data-toggle="toggle" id="lightEnable">
+            <input type="checkbox" data-toggle="toggle" id="lightEnable1">
+            <input type="checkbox" data-toggle="toggle" id="lightEnable2">
+            <input type="checkbox" data-toggle="toggle" id="lightEnable3">
+            <input type="checkbox" data-toggle="toggle" id="lightEnable4">
         </div>
 
     </div>    
@@ -75,8 +78,18 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                 url: "/getLightEnable.php",
             }).done(function(data) {
                 var enabled = data.substr(data.indexOf(":") + 1, data.length);
-                if ( enabled == "1" ) {
-                    $("#lightEnable").bootstrapToggle("on");
+                var dtEnabled = enabled.split(",");
+                if ( dtEnabled[0] == "1" ) {
+                    $("#lightEnable1").bootstrapToggle("on");
+                }
+                if ( dtEnabled[1] == "1" ) {
+                    $("#lightEnable2").bootstrapToggle("on");
+                }
+                if ( dtEnabled[2] == "1" ) {
+                    $("#lightEnable3").bootstrapToggle("on");
+                }
+                if ( dtEnabled[3] == "1" ) {
+                    $("#lightEnable4").bootstrapToggle("on");
                 }
 
                 $("#lightEnable").change(function (){
