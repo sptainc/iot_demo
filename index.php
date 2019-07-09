@@ -133,7 +133,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             $.ajax({
                 url: "/savelight.php?e" + lightNum + "=" + enabled,
             }).done(function(data) {
-                alert("Updated");
+                console.log("updated")
             });
         }
     </script>
