@@ -9,7 +9,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,115 +26,119 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     </style>
 </head>
 <body>
-    <div class="row">
-        <div class="col-xs-10">
-            <h2 class="m-b-10">Dashboard</h2>
-        </div>
-        <div class="col-xs-2">
-            <input type="checkbox" data-toggle="toggle" id="lightEnable1">
-            <input type="checkbox" data-toggle="toggle" id="lightEnable2">
-            <input type="checkbox" data-toggle="toggle" id="lightEnable3">
-            <input type="checkbox" data-toggle="toggle" id="lightEnable4">
+
+        <h2 class="m-b-10" style="text-align: center">Dashboard</h2>
+        <hr>
+
+        <div class="row" style="text-align: center;">
+                <div class="col-xs-3">
+                        <label for="lightEnable1">Relay 1</label>
+                        <input type="checkbox" data-toggle="toggle" id="lightEnable1">
+                </div>
+                <div class="col-xs-3">                
+                        <label for="lightEnable1">Relay 2</label>
+
+                        <input type="checkbox" data-toggle="toggle" id="lightEnable2">
+                </div>
+                <div class="col-xs-3">
+                        <label for="lightEnable1">Relay 3</label>
+
+                        <input type="checkbox" data-toggle="toggle" id="lightEnable3">
+                </div>
+                <div class="col-xs-3">
+                        <label for="lightEnable1">Relay 4</label>
+
+                        <input type="checkbox" data-toggle="toggle" id="lightEnable4">
+                </div>
+        </div>    
+        <br>
+        <hr>
+        <div class="row">
+            <div class="col-xs-12">
+                    <div class="row m-b-10" style="text-align: center; font-weight: bold;">
+                    <div class="col-xs-3">Nhiệt độ</div>
+                    <div class="col-xs-3">Độ ẩm</div>
+                    <div class="col-xs-3">Ánh sáng</div>
+                    <div class="col-xs-3">Thời gian</div>
+                    </div>
+
+                    <div id="datas">
+                    
+                    </div>
+                    
+            </div>
         </div>
 
-    </div>    
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="row m-b-10" style="text-align: center; font-weight: bold;">
-                <div class="col-xs-3">Nhiệt độ</div>
-                <div class="col-xs-3">Độ ẩm</div>
-                <div class="col-xs-3">Ánh sáng</div>
-                <div class="col-xs-3">Thời gian</div>
-            </div>
-
-            <div id="datas">
-                
-            </div>
-            
-        </div>
-    </div>
-    
-    <script type="text/javascript">
+        <script type="text/javascript">
         $( document ).ready(function() {
-            getDataFromServer();
-            getLightEnabled();
-            setInterval(function(){ 
                 getDataFromServer();
-            }, 5000);
-
+                getLightEnabled();
+                setInterval(function(){ 
+                getDataFromServer();
+                }, 5000);
         });
-
         function getDataFromServer() {
-            $.ajax({
+                $.ajax({
                 url: "/getdata.php",
-            }).done(function(data) {
-              $("#datas").html(data);
-            });
+                }).done(function(data) {
+                $("#datas").html(data);
+                });
         }
-
         function getLightEnabled() {
-            $.ajax({
+                $.ajax({
                 url: "/getLightEnable.php",
-            }).done(function(data) {
+                }).done(function(data) {
                 var enabled = data.substr(data.indexOf(":") + 1, data.length);
                 var dtEnabled = enabled.split(",");
                 if ( dtEnabled[0] == "1" ) {
-                    $("#lightEnable1").bootstrapToggle("on");
+                        $("#lightEnable1").bootstrapToggle("on");
                 }
                 if ( dtEnabled[1] == "1" ) {
-                    $("#lightEnable2").bootstrapToggle("on");
+                        $("#lightEnable2").bootstrapToggle("on");
                 }
                 if ( dtEnabled[2] == "1" ) {
-                    $("#lightEnable3").bootstrapToggle("on");
+                        $("#lightEnable3").bootstrapToggle("on");
                 }
                 if ( dtEnabled[3] == "1" ) {
-                    $("#lightEnable4").bootstrapToggle("on");
+                        $("#lightEnable4").bootstrapToggle("on");
                 }
-
                 $("#lightEnable1").change(function (){
-                    if ( $(this).prop('checked') ) {
+                        if ( $(this).prop('checked') ) {
                         saveLight(1, 1);
-                    } else { 
+                        } else { 
                         saveLight(1, 0);
-                    }
+                        }
                 });
-
-
                 $("#lightEnable2").change(function (){
-                    if ( $(this).prop('checked') ) {
+                        if ( $(this).prop('checked') ) {
                         saveLight(2, 1);
-                    } else { 
+                        } else { 
                         saveLight(2, 0);
-                    }
+                        }
                 });
-
-
                 $("#lightEnable3").change(function (){
-                    if ( $(this).prop('checked') ) {
+                        if ( $(this).prop('checked') ) {
                         saveLight(3, 1);
-                    } else { 
+                        } else { 
                         saveLight(3, 0);
-                    }
+                        }
                 });
-
-
                 $("#lightEnable4").change(function (){
-                    if ( $(this).prop('checked') ) {
+                        if ( $(this).prop('checked') ) {
                         saveLight(4, 1);
-                    } else { 
+                        } else { 
                         saveLight(4, 0);
-                    }
+                        }
                 });
-            });
+                });
         }
-
         function saveLight( lightNum ,enabled ) {
-            $.ajax({
+                $.ajax({
                 url: "/savelight.php?e" + lightNum + "=" + enabled,
-            }).done(function(data) {
+                }).done(function(data) {
                 console.log("updated")
-            });
+                });
         }
-    </script>
+        </script>
 </body>
 </html>
