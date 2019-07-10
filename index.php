@@ -27,7 +27,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 </head>
 <body>
 
-        <h2 class="m-b-10" style="text-align: center">Dashboard</h2>
+        <h2 class="m-b-10" style="text-align: center">Giám Sát Và Điều Khiển Thiết Bị</h2>
         <hr>
 
         <div class="row" style="text-align: center;">
