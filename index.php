@@ -58,7 +58,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     <div class="row m-b-10" style="text-align: center; font-weight: bold;">
                     <div class="col-xs-3">Nhiệt độ</div>
                     <div class="col-xs-3">Độ ẩm</div>
-                    <div class="col-xs-3">Ánh sáng</div>
+                    <div class="col-xs-3">Trạng Thái Thiết Bị</div>
                     <div class="col-xs-3">Thời gian</div>
                     </div>
 
