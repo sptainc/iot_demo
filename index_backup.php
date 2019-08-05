@@ -13,7 +13,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="5">
     <title>Dashboard</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
@@ -32,16 +31,16 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <hr>
 
         <div class="row" style="text-align: center;">
-                <div class="col-xs-6">
+                <div class="col-xs-3">
                         <label for="lightEnable1">Relay 1</label>
                         <input type="checkbox" data-toggle="toggle" id="lightEnable1">
                 </div>
-                <div class="col-xs-6">                
+                <div class="col-xs-3">                
                         <label for="lightEnable1">Relay 2</label>
 
                         <input type="checkbox" data-toggle="toggle" id="lightEnable2">
                 </div>
-                <!-- <div class="col-xs-3">
+                <div class="col-xs-3">
                         <label for="lightEnable1">Relay 3</label>
 
                         <input type="checkbox" data-toggle="toggle" id="lightEnable3">
@@ -50,17 +49,17 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                         <label for="lightEnable1">Relay 4</label>
 
                         <input type="checkbox" data-toggle="toggle" id="lightEnable4">
-                </div> -->
+                </div>
         </div>    
         <br>
         <hr>
         <div class="row">
             <div class="col-xs-12">
                     <div class="row m-b-10" style="text-align: center; font-weight: bold;">
-                    <div class="col-xs-4">Nhiệt độ</div>
-                    <div class="col-xs-4">Độ ẩm</div>
-                    <!-- <div class="col-xs-3">Trạng Thái Thiết Bị</div> -->
-                    <div class="col-xs-4">Thời gian</div>
+                    <div class="col-xs-3">Nhiệt độ</div>
+                    <div class="col-xs-3">Độ ẩm</div>
+                    <div class="col-xs-3">Trạng Thái Thiết Bị</div>
+                    <div class="col-xs-3">Thời gian</div>
                     </div>
 
                     <div id="datas">
